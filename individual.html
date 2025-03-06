@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadowsight Dashboard</title>
+    <style>
+        body {
+            background-image: url('i.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .container {
+            position: relative;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+            color: white;
+            z-index: 1;
+        }
+
+        h1 {
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            background: yellow;
+        }
+
+        .btn:hover {
+            background: gold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Case Status Box */
+        .status-box {
+            background: yellow;
+            color: black;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            background: gray;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: darkgray;
+        }
+
+        select, textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <!-- Main Dashboard -->
+    <div class="container" id="dashboard">
+        <h1>Individual Dashboard</h1>
+        <button class="btn" onclick="showSection('registerCase')">Register New Case</button>
+        <button class="btn" onclick="showSection('caseStatus')">Case Status</button>
+    </div>
+
+    <!-- Register Case Section -->
+    <div class="container hidden" id="registerCase">
+        <h1>Register New Case</h1>
+        <select>
+            <option value="">Select Case Type</option>
+            <option value="Fraud">Fraud</option>
+            <option value="Missing Person">Missing Person</option>
+            <option value="Property Dispute">Property Dispute</option>
+        </select>
+        <textarea placeholder="Case Description"></textarea>
+        <input type="file" accept="image/,video/">
+        <button class="btn">Submit Case</button>
+        <button class="back-btn" onclick="showSection('dashboard')">← Back</button>
+    </div>
+
+    <!-- Case Status Section -->
+    <div class="container hidden" id="caseStatus">
+        <h1>Case Status</h1>
+        <div class="status-box">
+            📌 <strong>Property Case</strong> <br>
+            Status: <span style="color: red;">Pending</span>
+        </div>
+        <button class="back-btn" onclick="showSection('dashboard')">← Back</button>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.getElementById("dashboard").classList.add("hidden");
+            document.getElementById("registerCase").classList.add("hidden");
+            document.getElementById("caseStatus").classList.add("hidden");
+
+            document.getElementById(sectionId).classList.remove("hidden");
+        }
+    </script>
+
+</body>
+</html>
